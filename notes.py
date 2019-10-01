@@ -2,47 +2,115 @@
 import sys
 import os 
 
-python = ".py"
-java = ".java"
-dart = ".dart"
-text = ".txt"
 
-extensions = {
-    "python" : python,
-    ".py" : python,
-    "text" : text,
-    ".txt" : text,
-    "java" : java,
-    ".java" : java,
-    "dart" : dart,
-    "flutter" : dart,
-    ".dart" : dart
-}
+class NoteAutomator: 
+    python = ".py"
+    java = ".java"
+    dart = ".dart"
+    text = ".txt"
 
-def create():
-    extension = str(sys.argv[3])
-    folderName = str(sys.argv[2])
-    fileName = str(sys.argv[1])
-    os.chdir("./Notes")
-    try:
-        extension = extensions[extension]
-    except Exception:
-        extension = ".txt"
+    extensions = {
+        "python" : python,
+        ".py" : python,
+        "text" : text,
+        ".txt" : text,
+        "java" : java,
+        ".java" : java,
+        "dart" : dart,
+        "flutter" : dart,
+        ".dart" : dart
+    }
 
-    fileName = fileName + extension
-    if os.path.isdir("./" + folderName):
-        os.chdir("./" + folderName)
-    else:
-        os.mkdir(folderName)
-        os.chdir("./" + folderName)
+    extension = ""
+    folderName = ""
+    fileName = ""
+    foundFileExtension = ""
+    path = os.getcwd()
+
+    def getArgs(self, ext_num, fold_num):
+        try:
+            self.extension = str(sys.argv[ext_num])
+            self.extension = self.extensions[self.extension]
+        except Exception:
+            self.extension = ".txt"
+        try:
+            self.folderName = str(sys.argv[fold_num])
+        except Exception:
+            self.folderName = "General"
+        try:
+            self.fileName = str(sys.argv[2])
+        except Exception:
+            print("Name your note")
+            sys.exit()
+
+    def createNoteAndFolder(self):
+        os.chdir("./Notes")
+
+        self.fileName = self.fileName + self.extension
+        if os.path.isdir("./" + self.folderName):
+            os.chdir("./" + self.folderName)
+        else:
+            os.mkdir(self.folderName)
+            os.chdir("./" + self.folderName)
     
-    if not os.path.isfile("./" + fileName):
-        open(fileName, "a").close()
+        if not os.path.isfile("./" + self.fileName):
+            open(self.fileName, "a").close()
 
-    os.system("subl " + fileName)
+        os.system("subl " + self.fileName)
+    
+    def findFileInFolder(self, folder):
+        if os.path.isdir(self.path + "/" + folder):
+            self.path = self.path + "/" + folder
+            self.findFile(self.fileName, "", self.path)
+        else:
+            self.path = self.findFolder(folder, "", self.path)
+            self.findFile(self.fileName, "",  self.path)
+        
+        # print(self.path)
+        os.system("subl " + self.path)
+    
+    def findFile(self, fileToFind, folderToSearch, thepath):
+        fileExists = False
+        pathToFolder = ""
+        for subdir, dirs, files in os.walk(thepath + folderToSearch):
+            for dir_ in dirs:
+                if dir_.lower() == self.folderName.lower():
+                    pathToFolder = ""
+                    pathToFolder = subdir + "/" + self.folderName
+            for file_ in files:
+                name = ""
+                for i in range(len(str(file_))):
+                    if len(str(self.fileName)) > i:
+                        if str(file_).lower()[i] == str(self.fileName).lower()[i]:
+                            name = name + str(file_)[i]
+                            if len(name) > 6:
+                                self.path = os.path.join(subdir, file_)
+                                fileExists = True
+                                break
+        if not fileExists:
+            self.path = os.path.join(pathToFolder ,self.fileName + self.extension)
+            open(self.path, "a").close()
+
+
 
 if __name__ == "__main__":
-    create()
+    notes = NoteAutomator()
+
+    command = str(sys.argv[1])
+
+    if command == "nfe":
+        notes.getArgs(4, 3)
+        notes.createNoteAndFolder()
+    if command == "on":
+        notes.getArgs(4, 3)
+        try: 
+            notes.findFileInFolder(str(sys.argv[3]))
+        except Exception:
+            notes.findFileInFolder("")
+    if command == "ne":
+        notes.getArgs(3, 10)
+        notes.findFileInFolder("")
+        
 
 
 
