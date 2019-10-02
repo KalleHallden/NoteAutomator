@@ -8,6 +8,7 @@ class NoteAutomator:
     java = ".java"
     dart = ".dart"
     text = ".txt"
+    yaml = ".yaml"
 
     extensions = {
         "python" : python,
@@ -18,7 +19,9 @@ class NoteAutomator:
         ".java" : java,
         "dart" : dart,
         "flutter" : dart,
-        ".dart" : dart
+        ".dart" : dart,
+        "yaml" : yaml,
+        ".yaml" : yaml
     }
 
     extension = ""
@@ -83,7 +86,7 @@ class NoteAutomator:
                     if len(str(self.fileName)) > i:
                         if str(file_).lower()[i] == str(self.fileName).lower()[i]:
                             name = name + str(file_)[i]
-                            if len(name) > 6:
+                            if len(name) > len(self.fileName) * 0.8:
                                 self.path = os.path.join(subdir, file_)
                                 fileExists = True
                                 break
