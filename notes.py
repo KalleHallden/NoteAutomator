@@ -9,6 +9,7 @@ class NoteAutomator:
     dart = ".dart"
     text = ".txt"
     yaml = ".yaml"
+    json = ".json"
 
     extensions = {
         "python" : python,
@@ -21,7 +22,10 @@ class NoteAutomator:
         "flutter" : dart,
         ".dart" : dart,
         "yaml" : yaml,
-        ".yaml" : yaml
+        ".yaml" : yaml,
+        "json" : json,
+        "jason" : json,
+        ".json" : json
     }
 
     extension = ""
@@ -32,7 +36,7 @@ class NoteAutomator:
 
     def getArgs(self, ext_num, fold_num):
         try:
-            self.extension = str(sys.argv[ext_num])
+            self.extension = str(sys.argv[ext_num]).lower()
             self.extension = self.extensions[self.extension]
         except Exception:
             self.extension = ".txt"
