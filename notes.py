@@ -1,15 +1,27 @@
+#!/bin/python3.7
+
 
 import sys
 import os 
 
 
 class NoteAutomator: 
+    ruby = ".rb"
+    php = ".php"
+    javascript = ".js"
+    typescript = ".ts"
     python = ".py"
     java = ".java"
+    csharp = ".cs"
     dart = ".dart"
     text = ".txt"
     yaml = ".yaml"
+    xml = ".xml"
+    html = ".html"
+    css = ".css"
     json = ".json"
+    org = ".org"
+    markdown = ".md"
 
     extensions = {
         "python" : python,
@@ -25,7 +37,25 @@ class NoteAutomator:
         ".yaml" : yaml,
         "json" : json,
         "jason" : json,
-        ".json" : json
+        ".json" : json,
+        "org" : org,
+        ".org" : org,
+        "markdown" : markdown,
+        ".md" : markdown,
+        "php" : php,
+        ".php" : php,
+        "ruby" : ruby,
+        ".rb" : ruby,
+        "javascript" : javascript,
+        "js" : javascript,
+        ".js" : javascript,
+        "ts" : typescript,
+        "xml" : xml,
+        ".xml" : xml,
+        "html" : html,
+        ".html": html,
+        "css" : css,
+        ".css" : css
     }
 
     extension = ""
@@ -118,33 +148,4 @@ if __name__ == "__main__":
         notes.getArgs(3, 10)
         notes.findFileInFolder("")
         
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
