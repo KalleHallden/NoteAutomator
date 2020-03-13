@@ -84,11 +84,10 @@ class NoteAutomator:
         os.chdir("./Notes")
 
         self.fileName = self.fileName + self.extension
-        if os.path.isdir("./" + self.folderName):
-            os.chdir("./" + self.folderName)
-        else:
+        if not os.path.isdir("./" + self.folderName):
             os.mkdir(self.folderName)
-            os.chdir("./" + self.folderName)
+            
+        os.chdir("./" + self.folderName)
     
         if not os.path.isfile("./" + self.fileName):
             open(self.fileName, "a").close()
