@@ -59,13 +59,23 @@ Test if it is working:
 ### List of Extensions
 
 The NoteAutomator made by Kalle handles extensions quite well. It's versatile.
-For.e.g. to use a `javaScript` extension you have three options, of which you can use
-- `javascript`
-- `js`
-- `.js`
+The complete usage is listed as below.
 
-Use any of those extensions to save a javascript file. Similary, you can save any of the following extension, in a similar fashion
 
-| __Extension__ | __Description__ | __Usage__ |
-|-------------|------------|------------|
-| JavaScript         | Javascript Files     | `javascript`, `js`, `.js`      |
+| __Extension__ | __Usage__ |
+|-------------|-----------|
+| Python      | `python`, `.py` |
+| Text        | `text`, `.txt` |
+| Java        |   `java`, `.java`|
+| Dart/Flutter  |   `dart`, `.dart` |
+| Yaml      | `yaml`, `.yaml` |
+| Json      |   `json`, `.json`, `jason`    |
+| Org       | `org`, `.org` |
+| Markdown  | `markdown`, `.md` |
+| PHP   |   `php`, `.php`   |
+| Ruby   |   `ruby`, `.rb`   |
+| JavaScript   |   `javascript`, `.js`, `js`   |
+| TypeScript   |   `.ts`, `ts`   |
+| XML   |   `xml`, `.xml`   |
+| HTML   |   `html`, `.html`   |
+| CSS   |   `css`, `.css`   |
