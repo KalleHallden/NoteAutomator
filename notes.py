@@ -22,6 +22,8 @@ class NoteAutomator:
     json = ".json"
     org = ".org"
     markdown = ".md"
+    cpp = ".cpp"
+    c = ".c"
 
     extensions = {
         "python" : python,
@@ -56,6 +58,10 @@ class NoteAutomator:
         ".html": html,
         "css" : css,
         ".css" : css
+        "cpp" : cpp
+        ".cpp" : cpp
+        "c" : c
+        ".c" : c
     }
 
     extension = ""
